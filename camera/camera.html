@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wink droid dis - camera</title>
+
+  <!-- bootstrap css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- tailwind css -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- jquery + jquery ui + jquery migrate -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+  <!-- your js -->
+  <script src="../js/camera.js" defer></script>
+  <style>
+    /* flicker effect */
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 22%, 24%, 55% { opacity: 0.4; }
+    }
+    .flicker {
+      animation: flicker 0.15s infinite;
+    }
+    .camera-feed {
+      width: 100%;
+      height: 24rem;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      position: relative;
+      overflow: hidden;
+    }
+    .camera-feed video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .camera-buttons button {
+      min-width: 40px;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+  <h1 class="text-3xl mb-4">fnaf camera</h1>
+
+  <div id="camera-feed" class="camera-feed border-4 border-gray-700 flicker">
+    <video id="camera-video" autoplay muted></video>
+    <div class="overlay" id="overlay"></div>
+  </div>
+
+  <div class="mt-4 flex gap-2 flex-wrap camera-buttons">
+    <button class="btn btn-secondary" data-cam="1">1</button>
+    <button class="btn btn-secondary" data-cam="2">2</button>
+    <button class="btn btn-secondary" data-cam="3">3</button>
+    <button class="btn btn-secondary" data-cam="4">4</button>
+    <button class="btn btn-secondary" data-cam="5">5</button>
+    <button class="btn btn-secondary" data-cam="6">6</button>
+    <button class="btn btn-secondary" data-cam="7">7</button>
+    <button class="btn btn-secondary" data-cam="8">8</button>
+    <button class="btn btn-secondary" data-cam="9">9</button>
+  </div>
+
+  <div class="mt-4 flex gap-4">
+    <button id="toggle-night" class="btn btn-warning">toggle night vision</button>
+    <button id="close-camera" class="btn btn-danger">exit camera</button>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      const video = document.getElementById('camera-video');
+      const overlay = $('#overlay');
+      const camButtons = $('.camera-buttons button');
+      let currentCam = 1;
+
+      // simulate multiple camera feeds
+      const camFeeds = {
+        1: 'https://picsum.photos/640/360?random=1',
+        2: 'https://picsum.photos/640/360?random=2',
+        3: 'https://picsum.photos/640/360?random=3',
+        4: 'https://picsum.photos/640/360?random=4',
+        5: 'https://picsum.photos/640/360?random=5',
+        6: 'https://picsum.photos/640/360?random=6',
+        7: 'https://picsum.photos/640/360?random=7',
+        8: 'https://picsum.photos/640/360?random=8',
+        9: 'https://picsum.photos/640/360?random=9'
+      };
+
+      // set initial feed
+      $('#camera-feed').css('background-image', `url(${camFeeds[currentCam]})`);
+      $('#camera-feed').css('background-size', 'cover');
+
+      // number buttons switch cameras
+      camButtons.on('click', function(){
+        currentCam = $(this).data('cam');
+        $('#camera-feed').css('background-image', `url(${camFeeds[currentCam]})`);
+      });
+
+      // night vision toggle
+      $('#toggle-night').on('click', function(){
+        $('#camera-feed').toggleClass('filter brightness-150 contrast-150 grayscale');
+      });
+
+      // exit camera
+      $('#close-camera').on('click', function(){
+        window.location.href = '../index.html';
+      });
+    });
+  </script>
+
+</body>
+</html>
