@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>welcome to da app store!1111!111 :d here get free money</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .money-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .money-buttons button {
+      background-color: #ffeb3b;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .money-buttons button:hover {
+      transform: scale(1.1);
+      background-color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>welcome to da app store!1111!111 :d here get free money</h1>
+
+  <div class="money-buttons">
+    <button data-amount="100">$100</button>
+    <button data-amount="200">$200</button>
+    <button data-amount="300">$300</button>
+    <button data-amount="400">$400</button>
+    <button data-amount="500">$500</button>
+    <button data-amount="600">$600</button>
+    <button data-amount="700">$700</button>
+    <button data-amount="800">$800</button>
+    <button data-amount="900">$900</button>
+    <button data-amount="1000">$1000</button>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.money-buttons button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const amount = btn.dataset.amount;
+        alert(`horray!!!!!111 :d you earned $${amount}!!!!!!!!!!111 app store is happy :)`);
+      });
+    });
+  </script>
+
+</body>
+</html>
