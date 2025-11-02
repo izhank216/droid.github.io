@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>welcome to da food page</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .food-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    .food-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .food-item button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #ff5722;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .food-item button:hover {
+      transform: scale(1.05);
+      background-color: #e64a19;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>welcome to da food page</h1>
+
+  <div class="food-list">
+    <div class="food-item">
+      <span>burger</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>pizza</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>fries</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>hotdog</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>apple</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>burger deluxe</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>ice cream</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>sandwich</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>taco</span>
+      <button class="eat-btn">eat</button>
+    </div>
+    <div class="food-item">
+      <span>donut</span>
+      <button class="eat-btn">eat</button>
+    </div>
+  </div>
+
+  <script>
+    const eatButtons = document.querySelectorAll('.eat-btn');
+    eatButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const percent = Math.floor(Math.random() * 101); // 0-100%
+        alert(`success, your health is now ${percent}% from eating that!!111 im happy agin :d`);
+      });
+    });
+  </script>
+
+</body>
+</html>
