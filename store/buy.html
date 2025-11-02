@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>welcome to da buy page</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .app-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 400px;
+    }
+    .app-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .app-item button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #4caf50;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .app-item button:hover {
+      transform: scale(1.05);
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>welcome to da buy page</h1>
+
+  <div class="app-list">
+    <div class="app-item">
+      <span>super doodle paint</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>crazy jump adventure</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>pixel chef simulator</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>robot party dance</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>happy cat clicker</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>alien tap frenzy</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>mystery cube escape</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>crazy balloon pop</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>magic potion maker</span>
+      <button class="buy-btn">buy</button>
+    </div>
+    <div class="app-item">
+      <span>super ninja run</span>
+      <button class="buy-btn">buy</button>
+    </div>
+  </div>
+
+  <script>
+    const buyButtons = document.querySelectorAll('.buy-btn');
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        alert('horray!!!!11 you buyed an app!!!111 go to it and start it :)');
+      });
+    });
+  </script>
+
+</body>
+</html>
