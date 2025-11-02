@@ -7,13 +7,14 @@
 <style>
   body { background-color: #f9f9f9; font-family: arial, sans-serif; margin:0; padding:0; }
   header { background-color: #ff0000; color:#fff; padding:1rem; font-size:1.5rem; font-weight:bold; display:flex; justify-content:space-between; align-items:center; }
-  header button { padding:0.3rem 0.6rem; border:none; border-radius:4px; cursor:pointer; background-color:#fff; color:#ff0000; font-weight:bold; }
+  header a { padding:0.3rem 0.6rem; border:none; border-radius:4px; cursor:pointer; background-color:#fff; color:#ff0000; font-weight:bold; text-decoration:none; }
   nav { background-color: #f1f1f1; padding:0.5rem 1rem; display:flex; gap:1rem; }
   nav a { text-decoration:none; color:#000; font-weight:bold; }
   main { padding:1rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
   .video { background-color:#fff; width:200px; border:1px solid #ccc; border-radius:4px; overflow:hidden; cursor:pointer; }
   .video video { width:100%; display:block; }
   .video p { margin:0.5rem; font-size:0.9rem; font-weight:bold; }
+  .video .info { font-size:0.8rem; color:#555; margin:0 0.5rem 0.5rem; }
   #player-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); justify-content:center; align-items:center; z-index:1000; }
   #player-container { background-color:#000; padding:1rem; border-radius:8px; width:80%; max-width:640px; }
   #player-container video { width:100%; height:auto; }
@@ -24,8 +25,9 @@
 
 <header>
   oldtube
-  <button id="upload-btn">upload</button>
+  <a href="upload.html">upload</a>
 </header>
+
 <nav>
   <a href="#">home</a>
   <a href="#">trending</a>
@@ -47,19 +49,24 @@
 <script>
 const videoList = document.getElementById('video-list');
 
-// updated initial sample videos
-const videos = [
+// initial sample videos
+let videos = [
   { title:"bunny found an butterfly (sample video)", file:null, url:"https://www.w3schools.com/html/mov_bbb.mp4" },
   { title:"bear in water", file:null, url:"https://www.w3schools.com/html/movie.mp4" }
 ];
 
-// function to render videos
+// load uploaded videos from localStorage
+const uploaded = JSON.parse(localStorage.getItem('uploadedVideos') || '[]');
+videos = uploaded.concat(videos); // uploaded videos first
+
 function renderVideos() {
   videoList.innerHTML = '';
   videos.forEach((v,i) => {
     const div = document.createElement('div');
     div.className = 'video';
-    div.innerHTML = `<video src="${v.url}" muted preload="metadata"></video><p>${v.title}</p>`;
+    let info = '';
+    if(v.username) info = `<div class="info">by ${v.username}${v.description ? ' - '+v.description : ''}</div>`;
+    div.innerHTML = `<video src="${v.url}" muted preload="metadata"></video><p>${v.title}</p>${info}`;
     div.addEventListener('click', () => {
       const overlay = document.getElementById('player-overlay');
       const player = document.getElementById('player-video');
@@ -70,6 +77,7 @@ function renderVideos() {
     videoList.appendChild(div);
   });
 }
+
 renderVideos();
 
 // close player
@@ -80,31 +88,8 @@ document.getElementById('close-player').addEventListener('click', () => {
   player.src = '';
   overlay.style.display = 'none';
 });
-
-// upload video
-document.getElementById('upload-btn').addEventListener('click', () => {
-  const username = prompt("enter your name/username:");
-  if(!username) return alert("username is required");
-
-  const title = prompt("enter video title (required):");
-  if(!title) return alert("video title is required");
-
-  const description = prompt("enter description (optional):");
-
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.accept = 'video/mp4';
-  fileInput.onchange = e => {
-    const file = e.target.files[0];
-    if(!file) return;
-    const url = URL.createObjectURL(file);
-    videos.unshift({ title: title, file: file, url: url, description: description, username: username });
-    renderVideos();
-    alert(`video uploaded! ${title} by ${username}`);
-  };
-  fileInput.click();
-});
 </script>
 
 </body>
 </html>
+
